@@ -88,14 +88,13 @@ private:
                              });
   }
 
-  void do_read() // type = 0->read created room name and client_id
-                 //  or type =1 ->read existed room name and room_id and client_id
+  void do_read()
   {
     // auto self(shared_from_this());// weak_pkt 원인 코드
 
     boost::asio::async_read(socket_,
-                            boost::asio::buffer(pkt_, sizeof(struct packet)),            // header length만큼만 읽겠다
-                            [this](boost::system::error_code ec, std::size_t /*length*/) // 나머지 body length는 buffer에 남음-
+                            boost::asio::buffer(pkt_, sizeof(struct packet)),
+                            [this](boost::system::error_code ec, std::size_t /*length*/)
                             {
                               if (!ec)
                               {
