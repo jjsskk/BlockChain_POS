@@ -26,7 +26,7 @@ public:
   {
 
     int i = 0;
-    for (auto participant : participants_) // server send file read check msg to all member in room except himself
+    for (auto participant : participants_)
     {
       participant->deliver(msg);
       i++;
@@ -34,6 +34,6 @@ public:
     // printf("particpants number : %d\n",i);
   }
 
-private: // 전역 변수들
+private:
   std::set<node_participant_ptr> participants_;
 };
