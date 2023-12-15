@@ -233,12 +233,13 @@ void node_session::makeBlock()
   transactions.resetTransactions();
   block.printBlockData();
   wallet.resetShares();
-  wallet.increaseShare();
   if (!blockchain.isChainValid())
   {
+    wallet.slashShare(3);
     disconnectPeerNode();
     return;
   }
+  wallet.increaseShare();
   deliver_block(block);
 }
 void node_session::deliver_block(Block &block)

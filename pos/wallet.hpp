@@ -21,6 +21,12 @@ public:
         printf("your stake : %d\n", share);
         this->share = share;
     }
+    void slashShare(int minus)
+    {
+        printf("slash your stake : -%d\n", minus);
+        share -= minus;
+        printf("your stake : %d\n", share);
+    }
 
     int getShare()
     {
