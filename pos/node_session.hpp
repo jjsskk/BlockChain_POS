@@ -36,6 +36,7 @@ public:
   void makeBlock();
   void deliver_block(Block &block);
   void read_block();
+  void disconnectPeerNode();
 
 private:
   void do_connect(std::string &port, tcp::resolver::iterator endpoint_iterator)

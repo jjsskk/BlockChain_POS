@@ -236,14 +236,7 @@ void node_session::makeBlock()
   wallet.increaseShare();
   if (!blockchain.isChainValid())
   {
-
-    std::cout << "detected block modification!" << std::endl;
-    std::cout << "are you hacker?" << std::endl;
-    std::cout << "please shutdown this program!" << std::endl;
-    blockchain.deleteBlock();
-    struct packet pkt_write;
-    pkt_write.type = 5;
-    roomlist_.back()->deliver(pkt_write);
+    disconnectPeerNode();
     return;
   }
   deliver_block(block);
@@ -271,15 +264,19 @@ void node_session::read_block()
   transactions.resetTransactions();
   if (!blockchain.isChainValid())
   {
-
-    std::cout << "detected block modification!" << std::endl;
-    std::cout << "are you hacker?" << std::endl;
-    std::cout << "please shutdown this program!" << std::endl;
-    blockchain.deleteBlock();
-    struct packet pkt_write;
-    pkt_write.type = 5;
-    roomlist_.back()->deliver(pkt_write);
+    disconnectPeerNode();
     return;
   }
   // timer_create_block(timer_);
+}
+
+void node_session::disconnectPeerNode()
+{
+  std::cout << "detected block modification!" << std::endl;
+  std::cout << "are you hacker?" << std::endl;
+  std::cout << "please shutdown this program!" << std::endl;
+  blockchain.deleteBlock();
+  struct packet pkt_write;
+  pkt_write.type = 5;
+  roomlist_.back()->deliver(pkt_write);
 }
