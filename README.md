@@ -26,6 +26,10 @@ OpenSSL 3.0.2 15 Mar 2022 (Library: OpenSSL 3.0.2 15 Mar 2022)
 
 - [boost_1_81_0.tar.gz download](https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.tar.gz)
 
+- Multi-Thread 기반 프로그램으로 main thread가 유저의 터미널 input창을 관리하고 나머지 모든 connection과 protocal에 따른 통신은 하나의 thread를 생성해 관리합니다.
+
+- Boost.Asio의 장점을 이용해 무분별한 Thread 생성을 방지해 자원관리의 효율성을 향상시켰습니다. 
+
 ## 실행 방법
 
 - Compile을 위해 make파일을 실행합니다.
